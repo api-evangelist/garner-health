@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/garner-health-openapi-original.yml
+docs: 'https://garnerhealth.redoc.ly/#section/Authentication:'
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+notes: >-
+  The published OpenAPI declares a single http bearer scheme (ApiToken, bearerFormat
+  API_TOKEN). The Garner developer docs document the primary mechanism as OAuth 2.0
+  client-credentials: exchange an API client_id + client_secret at POST
+  https://api.getgarner.com/oauth2/token (grant_type=client_credentials) for a Bearer
+  access_token valid 15 minutes, then send it as Authorization: Bearer <token>. A legacy
+  path issues a long-lived JWT at account setup used directly as the bearer token. All
+  credentials are provisioned during account setup by a Garner account manager.
+schemes:
+- name: ApiToken
+  type: http
+  scheme: bearer
+  bearerFormat: API_TOKEN
+  sources:
+  - openapi/garner-health-openapi-original.yml
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  tokenUrl: https://api.getgarner.com/oauth2/token
+  token_lifetime_seconds: 900
+  source: 'https://garnerhealth.redoc.ly/#section/Authentication:/OAuth2.0'
+  scopes: []
