@@ -1,25 +1,202 @@
 aid: garner-health
 name: Garner Health
-description: 'Garner Health is a company surfaced as a portfolio company of kleiner-perkins and added
-  to the API Evangelist network as a stub for enrichment. Sector: healthcare. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Garner Health is a healthcare technology company that helps members find high-quality,
+  in-network doctors and helps employers, benefits advisors, health plans, and providers
+  improve care quality while lowering healthcare costs. Garner analyzes more than 60 billion
+  de-identified medical records from 320M+ patients and scores providers on 550+
+  specialty-specific quality and efficiency metrics across 80+ specialties to identify Top
+  Providers. Its provider-recommendation API returns rank-ordered providers, professional and
+  facility detail, and a provider-annotation endpoint over the base host api.getgarner.com,
+  authenticated with OAuth 2.0 client credentials. Garner is SOC 2 Type II certified.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/6994c8f92ae6b0d756f5e541/69b15a86b59f244f1a4d372e_Open%20graph%20img.png
 url: https://raw.githubusercontent.com/api-evangelist/garner-health/refs/heads/main/apis.yml
 x-type: company
 x-source: kleiner-perkins-portfolio
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Healthcare
-apis: []
+- Health Data
+- Provider Directory
+- Care Navigation
+- Claims Analytics
+- Health Plans
+- Employee Benefits
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: garner-health:garner-health-facilities-api
+  name: Garner Health Facilities API
+  description: The Facilities API from Garner Health — 1 operation(s) for facilities.
+  humanURL: https://garnerhealth.redoc.ly
+  baseURL: https://api.getgarner.com
+  tags:
+  - Facilities
+  properties:
+  - type: OpenAPI
+    url: openapi/garner-health-facilities-api-openapi.yml
+  - type: Authentication
+    url: authentication/garner-health-authentication.yml
+  - type: OpenAPIOverlay
+    url: overlays/garner-health-openapi-overlay.yaml
+  - type: Conventions
+    url: conventions/garner-health-conventions.yml
+  - type: Idempotency
+    url: conventions/garner-health-conventions.yml
+  - type: ErrorCatalog
+    url: errors/garner-health-problem-types.yml
+  - type: DataModel
+    url: data-model/garner-health-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/garner-health-lifecycle.yml
+- aid: garner-health:garner-health-professionals-api
+  name: Garner Health Professionals API
+  description: The Professionals API from Garner Health — 1 operation(s) for professionals.
+  humanURL: https://garnerhealth.redoc.ly
+  baseURL: https://api.getgarner.com
+  tags:
+  - Professionals
+  properties:
+  - type: OpenAPI
+    url: openapi/garner-health-professionals-api-openapi.yml
+  - type: Authentication
+    url: authentication/garner-health-authentication.yml
+  - type: OpenAPIOverlay
+    url: overlays/garner-health-openapi-overlay.yaml
+  - type: Conventions
+    url: conventions/garner-health-conventions.yml
+  - type: Idempotency
+    url: conventions/garner-health-conventions.yml
+  - type: ErrorCatalog
+    url: errors/garner-health-problem-types.yml
+  - type: DataModel
+    url: data-model/garner-health-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/garner-health-lifecycle.yml
+- aid: garner-health:garner-health-provider-annotations-api
+  name: Garner Health Provider Annotations API
+  description: >-
+    The Provider Annotations API from Garner Health — 1 operation(s) for provider annotations.
+  humanURL: https://garnerhealth.redoc.ly
+  baseURL: https://api.getgarner.com
+  tags:
+  - Provider Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/garner-health-provider-annotations-api-openapi.yml
+  - type: Authentication
+    url: authentication/garner-health-authentication.yml
+  - type: OpenAPIOverlay
+    url: overlays/garner-health-openapi-overlay.yaml
+  - type: Conventions
+    url: conventions/garner-health-conventions.yml
+  - type: Idempotency
+    url: conventions/garner-health-conventions.yml
+  - type: ErrorCatalog
+    url: errors/garner-health-problem-types.yml
+  - type: DataModel
+    url: data-model/garner-health-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/garner-health-lifecycle.yml
+- aid: garner-health:garner-health-providers-api
+  name: Garner Health Providers API
+  description: The Providers API from Garner Health — 1 operation(s) for providers.
+  humanURL: https://garnerhealth.redoc.ly
+  baseURL: https://api.getgarner.com
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/garner-health-providers-api-openapi.yml
+  - type: Authentication
+    url: authentication/garner-health-authentication.yml
+  - type: OpenAPIOverlay
+    url: overlays/garner-health-openapi-overlay.yaml
+  - type: Conventions
+    url: conventions/garner-health-conventions.yml
+  - type: Idempotency
+    url: conventions/garner-health-conventions.yml
+  - type: ErrorCatalog
+    url: errors/garner-health-problem-types.yml
+  - type: DataModel
+    url: data-model/garner-health-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/garner-health-lifecycle.yml
 common:
 - type: Website
-  url: https://www.getgarner.com
+  url: https://garnerhealth.com
+- type: DeveloperPortal
+  url: https://garnerhealth.redoc.ly
+- type: Documentation
+  url: https://garnerhealth.redoc.ly
+- type: APIReference
+  url: https://garnerhealth.redoc.ly
+- type: GettingStarted
+  url: 'https://garnerhealth.redoc.ly/#section/Authentication:'
+- type: Authentication
+  url: authentication/garner-health-authentication.yml
+- type: Conventions
+  url: conventions/garner-health-conventions.yml
+- type: Idempotency
+  url: conventions/garner-health-conventions.yml
+- type: ErrorCatalog
+  url: errors/garner-health-problem-types.yml
+- type: DataModel
+  url: data-model/garner-health-data-model.yml
+- type: Lifecycle
+  url: lifecycle/garner-health-lifecycle.yml
+- type: Conformance
+  url: conformance/garner-health-conformance.yml
+- type: Compliance
+  url: https://garnerhealth.com/news/garner-completes-soc-2-type-ii-certification
+- type: MCPServer
+  url: mcp/garner-health-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/garner-health-agentic-access.yml
+- type: WellKnown
+  url: well-known/garner-health-well-known.yml
+- type: DomainSecurity
+  url: security/garner-health-domain-security.yml
+- type: LLMsTxt
+  url: llms/garner-health-llms.txt
+- type: OpenAPIOverlay
+  url: overlays/garner-health-openapi-overlay.yaml
+- type: Blog
+  url: https://garnerhealth.com/blog
+- type: Pricing
+  url: https://garnerhealth.com/pricing
+- type: SignUp
+  url: https://garnerhealth.com/request-demo
+- type: Login
+  url: https://app.getgarner.com
+- type: TermsOfService
+  url: https://garnerhealth.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://garnerhealth.com/privacy-policy
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
