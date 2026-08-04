@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/garner-health-openapi-original.yml
+note: >-
+  No official hosted/remote Garner MCP server was found (no entry in the MCP registry,
+  no @modelcontextprotocol package, none referenced in the docs). Tools below are a
+  candidate surface derived one-per-operation from the OpenAPI, for a future MCP wrapper.
+server:
+  name: garner-health
+  transport: http
+  url: null
+tools:
+- name: get_ranked_providers
+  description: Get a rank-ordered list of Top Providers for a specialty near a position.
+  source_operation: openapi/garner-health-openapi-original.yml#GetRankedProviders
+- name: create_provider_annotations
+  description: Annotate a provider record for accuracy.
+  source_operation: openapi/garner-health-openapi-original.yml#CreateProviderAnnotations
+- name: get_professional
+  description: Get details, quality metrics, and locations for a single professional.
+  source_operation: openapi/garner-health-openapi-original.yml#GetProfessional
+- name: get_facility
+  description: Get details and specialty/network data for a single facility location.
+  source_operation: openapi/garner-health-openapi-original.yml#GetFacility

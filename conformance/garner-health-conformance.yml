@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/garner-health-openapi-original.yml
+compliance:
+- program: SOC 2 Type II
+  status: certified
+  evidence: https://garnerhealth.com/news/garner-completes-soc-2-type-ii-certification
+  note: >-
+    Garner completed a SOC 2 Type II audit; the report is available to customers upon
+    request under NDA.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Docs document OAuth 2.0 client-credentials token exchange at POST
+    https://api.getgarner.com/oauth2/token (15-minute bearer tokens).
+- id: openapi-3.0
+  conforms: true
+  evidence: Provider publishes an OpenAPI 3.0.3 document (v1.11.0).
+- id: bearer-token-http
+  conforms: true
+  evidence: securityScheme ApiToken (http bearer, bearerFormat API_TOKEN).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom ServiceError envelope, not application/problem+json.
+- id: fhir-r4
+  conforms: false
+  evidence: No FHIR resource shapes; Garner exposes a proprietary provider-quality model.
+- id: hipaa
+  conforms: unverified
+  evidence: >-
+    Garner operates on de-identified claims data and is a healthcare vendor; no explicit
+    public HIPAA attestation page was found. SOC 2 Type II is the published attestation.

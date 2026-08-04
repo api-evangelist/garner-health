@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Garner Health API
+  version: 1.0.0
+extends: openapi/garner-health-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-19'
+    x-apievangelist-auth: oauth2-client-credentials
+    x-apievangelist-error-envelope: ServiceError (custom, not RFC 9457)
+    x-apievangelist-compliance:
+    - SOC 2 Type II
+- target: $.paths['/providers'].get
+  update:
+    x-apievangelist-tag: provider-recommendation
+    x-apievangelist-idempotent: true
+- target: $.paths['/professionals/{professional_id}'].get
+  update:
+    x-apievangelist-tag: professional-detail
+    x-apievangelist-idempotent: true
+- target: $.paths['/facilities/{facility_id}'].get
+  update:
+    x-apievangelist-tag: facility-detail
+    x-apievangelist-idempotent: true
+- target: $.paths['/provider-annotations/{provider_id}'].post
+  update:
+    x-apievangelist-tag: data-quality
+    x-apievangelist-idempotent: false

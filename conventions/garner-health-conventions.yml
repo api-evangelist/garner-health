@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/garner-health-openapi-original.yml
+docs: https://garnerhealth.redoc.ly/
+authentication:
+  style: oauth2-client-credentials
+  header: 'Authorization: Bearer <access_token>'
+  token_lifetime_seconds: 900
+  ref: authentication/garner-health-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header or parameter is documented. Reads (GET providers,
+    professionals, facilities) are naturally idempotent; the single write operation
+    (POST provider-annotations) declares no idempotency contract.
+pagination:
+  style: limit-cap
+  params:
+  - limit
+  note: >-
+    GetRankedProviders accepts a `limit` query parameter that caps the maximum number of
+    ranked providers returned. No cursor/offset pagination or next-page tokens are
+    documented; result lists are returned whole under a `providers` array.
+  response_fields:
+  - providers
+geospatial_query:
+  note: >-
+    Location-scoped queries take either (lat + lng) or a 5-digit zipCode as the origin;
+    lat/lng and zipCode are mutually exclusive.
+error_envelope:
+  shape: custom
+  schema: ServiceError
+  fields:
+  - requestId
+  - message
+  - data
+  content_type: application/json
+  note: >-
+    Errors return a ServiceError object (not RFC 9457 problem+json): a numeric `requestId`,
+    a human `message`, and an optional free-form `data` object. See
+    errors/garner-health-problem-types.yml.
+request_tracing:
+  field: requestId
+  location: error-response-body
+  note: The numeric requestId echoed in error bodies is the correlation handle for support.
+versioning:
+  scheme: info.version
+  current: v1.11.0
+  ref: lifecycle/garner-health-lifecycle.yml
+rate_limit_signaling:
+  documented: false

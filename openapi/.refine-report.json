@@ -1,0 +1,20 @@
+{
+  "provider": "garner-health",
+  "sources": [
+    "garner-health-facilities-api-openapi.yml",
+    "garner-health-professionals-api-openapi.yml",
+    "garner-health-provider-annotations-api-openapi.yml",
+    "garner-health-providers-api-openapi.yml"
+  ],
+  "outputs": [
+    "garner-health-facilities-api-openapi.yml",
+    "garner-health-professionals-api-openapi.yml",
+    "garner-health-provider-annotations-api-openapi.yml",
+    "garner-health-providers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

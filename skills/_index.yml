@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/garner-health-openapi-original.yml
+skills:
+- file: garner-health-find-top-providers.md
+  name: Find Garner Top Providers near a patient
+  api: openapi/garner-health-openapi-original.yml
+  operations: [GetRankedProviders]
+- file: garner-health-resolve-provider-details.md
+  name: Resolve Garner professional and facility details
+  api: openapi/garner-health-openapi-original.yml
+  operations: [GetProfessional, GetFacility]

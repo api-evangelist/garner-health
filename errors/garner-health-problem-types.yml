@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/garner-health-openapi-original.yml
+format: custom
+envelope:
+  schema: ServiceError
+  content_type: application/json
+  fields:
+  - name: requestId
+    type: number
+    description: Numeric correlation id echoed back for support / tracing.
+  - name: message
+    type: string
+    required: true
+    description: Human-readable error message.
+  - name: data
+    type: object
+    description: Optional free-form supplementary data about the error.
+note: >-
+  Garner returns a custom ServiceError envelope (not RFC 9457 problem+json). Statuses
+  below are derived from the OpenAPI responses; 404 responses declare no body.
+problems:
+- status: 422
+  title: Invalid request
+  schema: ServiceError
+  meaning: Request failed validation (missing/unsupported parameter, invalid combination).
+  source_operations:
+  - openapi/garner-health-openapi-original.yml#GetRankedProviders
+  - openapi/garner-health-openapi-original.yml#CreateProviderAnnotations
+  - openapi/garner-health-openapi-original.yml#GetProfessional
+  - openapi/garner-health-openapi-original.yml#GetFacility
+  examples:
+  - 'GetRankedProviders: Invalid request'
+  - 'CreateProviderAnnotations: Annotation field not supported'
+  - 'GetProfessional / GetFacility: Missing required query parameter'
+- status: 404
+  title: Not found
+  schema: null
+  meaning: The requested professional or facility id does not exist.
+  source_operations:
+  - openapi/garner-health-openapi-original.yml#GetProfessional
+  - openapi/garner-health-openapi-original.yml#GetFacility

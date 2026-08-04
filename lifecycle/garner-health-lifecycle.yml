@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/garner-health-openapi-original.yml
+versioning:
+  scheme: info.version
+  current: v1.11.0
+  note: >-
+    Version is carried in the OpenAPI info.version (v1.11.0). No URI-path or header
+    version segment is used; the base host is https://api.getgarner.com with unversioned
+    paths. Provisioning and version guidance is handled through the assigned account
+    manager.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+  note: No public SLA/uptime commitment published (enterprise agreements are contractual).
+status_page: null
+deprecated_operations: []

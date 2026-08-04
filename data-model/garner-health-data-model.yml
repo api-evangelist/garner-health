@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/garner-health-openapi-original.yml
+note: >-
+  Entity-relationship graph derived from OpenAPI component schema $ref links and
+  id-reference fields. Garner's domain centers on three core entities returned by the
+  provider-recommendation API: Professional, Facility, and the ranked/directory Provider
+  result, all anchored to physical Locations and carrier Networks.
+entities:
+- name: RankedProvider
+  description: A single provider (professional or facility) in a rank-ordered result list.
+  key: id
+  relationships:
+  - belongs_to: Location
+    via: location
+  - has_one: Gender
+    via: gender
+- name: ProviderDirectoryEntry
+  description: A professional returned by a name/NPI directory search.
+  key: id
+  relationships:
+  - belongs_to: Location
+    via: location
+- name: Professional
+  description: A single healthcare professional with quality metrics and practice locations.
+  key: id
+  relationships:
+  - has_many: ProfessionalLocation
+    via: locations
+  - has_many: ProfessionalSpecialty
+    via: specialties
+  - has_many: Metric
+    via: metrics
+- name: Facility
+  description: A single facility with specialties and per-location directory data.
+  key: id
+  relationships:
+  - has_many: FacilityLocation
+    via: locations
+  - has_many: FacilitySpecialtyLocation
+    via: specialties
+- name: Location
+  description: A physical practice location with a geographic Position.
+  key: id
+  relationships:
+  - has_one: Position
+    via: position
+- name: ProfessionalSpecialty
+  description: A specialty a professional practices, with per-location network data.
+  relationships:
+  - has_many: ProfessionalSpecialtyLocation
+    via: locations
+- name: ProfessionalNetwork
+  description: Carrier-network participation for a professional at a location.
+  key: network_id
+  relationships:
+  - has_one: FacilityNetwork
+    via: facilityNetwork
+- name: FacilityNetwork
+  description: Carrier-network participation for a facility.
+  key: network_id
+- name: Metric
+  description: A clinical or financial quality metric scored for a professional/specialty.
+  key: id
+- name: Annotation
+  description: A correction submitted against a provider record for accuracy.
+  relationships:
+  - has_one: AnnotationField
+    via: field
