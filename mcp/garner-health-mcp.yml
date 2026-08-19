@@ -2,10 +2,9 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/garner-health-openapi-original.yml
-note: >-
-  No official hosted/remote Garner MCP server was found (no entry in the MCP registry,
-  no @modelcontextprotocol package, none referenced in the docs). Tools below are a
-  candidate surface derived one-per-operation from the OpenAPI, for a future MCP wrapper.
+note: No official hosted/remote Garner MCP server was found (no entry in the MCP registry, no @modelcontextprotocol
+  package, none referenced in the docs). Tools below are a candidate surface derived one-per-operation
+  from the OpenAPI, for a future MCP wrapper.
 server:
   name: garner-health
   transport: http
@@ -23,3 +22,9 @@ tools:
 - name: get_facility
   description: Get details and specialty/network data for a single facility location.
   source_operation: openapi/garner-health-openapi-original.yml#GetFacility
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census
