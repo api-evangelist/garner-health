@@ -9,6 +9,18 @@ description: >-
   Providers. Its provider-recommendation API returns rank-ordered providers, professional and
   facility detail, and a provider-annotation endpoint over the base host api.getgarner.com,
   authenticated with OAuth 2.0 client credentials. Garner is SOC 2 Type II certified.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
