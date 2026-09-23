@@ -1,10 +1,7 @@
 {
   "provider": "garner-health",
   "sources": [
-    "garner-health-facilities-api-openapi.yml",
-    "garner-health-professionals-api-openapi.yml",
-    "garner-health-provider-annotations-api-openapi.yml",
-    "garner-health-providers-api-openapi.yml"
+    "_original/garner-health-openapi-original.yml"
   ],
   "outputs": [
     "garner-health-facilities-api-openapi.yml",
@@ -15,6 +12,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "garner-health-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "garner-health-openapi-original.yml: tagged paths GET /providers -> Providers",
+    "garner-health-openapi-original.yml: tagged paths POST /provider-annotations/{provider_id} -> Provider Annotations",
+    "garner-health-openapi-original.yml: tagged paths GET /professionals/{professional_id} -> Professionals",
+    "garner-health-openapi-original.yml: tagged paths GET /facilities/{facility_id} -> Facilities",
+    "garner-health-openapi-original.yml: declared missing tag: Facilities",
+    "garner-health-openapi-original.yml: declared missing tag: Professionals",
+    "garner-health-openapi-original.yml: declared missing tag: Provider Annotations",
+    "garner-health-openapi-original.yml: declared missing tag: Providers",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "garner-health-facilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "garner-health-professionals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "garner-health-provider-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "garner-health-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
