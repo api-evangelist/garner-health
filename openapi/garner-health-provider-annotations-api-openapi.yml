@@ -48,30 +48,7 @@ paths:
       tags:
       - Provider Annotations
 components:
-  parameters:
-    acceptVersion:
-      name: Accept-Version
-      in: header
-      required: true
-      schema:
-        type: integer
-        enum:
-        - 1
-      description: The API major version.
   schemas:
-    CreateAnnotation.ResponseBody:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Number of annotations created
-          example: 1
-      required:
-      - count
-      additionalProperties: false
-      description: Returns number of annotations created
-    CreateAnnotation.RequestBody:
-      $ref: '#/components/schemas/CreateAnnotationParams'
     ServiceError:
       type: object
       properties:
@@ -85,6 +62,51 @@ components:
       required:
       - message
       additionalProperties: false
+    CreateAnnotation.ResponseBody:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Number of annotations created
+          example: 1
+      required:
+      - count
+      additionalProperties: false
+      description: Returns number of annotations created
+    Annotation:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/AnnotationField'
+          description: key of the field to be annotated
+          example: phoneNumber
+        value:
+          anyOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: string
+          description: value of the field that is being annotated. It can either be a string or an object.
+          example: 2121126544
+        isCorrect:
+          type: boolean
+          description: indicates whether the current value is correct or incorrect
+          example: false
+        correctedValue:
+          anyOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: string
+          description: Corrected value of the annotated field
+          example: 2121126542
+      required:
+      - field
+      - value
+      - isCorrect
+      additionalProperties: false
+    CreateAnnotation.RequestBody:
+      $ref: '#/components/schemas/CreateAnnotationParams'
     AnnotationField:
       type: string
       enum:
@@ -122,38 +144,16 @@ components:
       - locationId
       - annotations
       additionalProperties: false
-    Annotation:
-      type: object
-      properties:
-        field:
-          $ref: '#/components/schemas/AnnotationField'
-          description: key of the field to be annotated
-          example: phoneNumber
-        value:
-          anyOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: string
-          description: value of the field that is being annotated. It can either be a string or an object.
-          example: 2121126544
-        isCorrect:
-          type: boolean
-          description: indicates whether the current value is correct or incorrect
-          example: false
-        correctedValue:
-          anyOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: string
-          description: Corrected value of the annotated field
-          example: 2121126542
-      required:
-      - field
-      - value
-      - isCorrect
-      additionalProperties: false
+  parameters:
+    acceptVersion:
+      name: Accept-Version
+      in: header
+      required: true
+      schema:
+        type: integer
+        enum:
+        - 1
+      description: The API major version.
   securitySchemes:
     ApiToken:
       type: http
