@@ -58,6 +58,135 @@ paths:
       - Professionals
 components:
   schemas:
+    FacilityNetwork:
+      type: object
+      properties:
+        network_id:
+          type: string
+          description: Unique identifier for the network
+        is_in_network:
+          type: boolean
+          description: Whether the provider is in network for the given specialty at the given location
+      required:
+      - network_id
+      - is_in_network
+      additionalProperties: false
+    ProfessionalLocation:
+      allOf:
+      - $ref: '#/components/schemas/LocationBase'
+      - type: object
+        properties:
+          name:
+            description: Name of the office or facility for the associated location and provider
+            type: string
+          accepts_new_patients:
+            description: Whether the provider is accepting new patients at the location
+            type: boolean
+          availability_within_weeks:
+            description: The number of weeks out a provider is scheduling new patients, if known
+            type: integer
+          provider_corporation_name:
+            type: string
+            description: The primary provider corporation (e.g. health system) affiliated with this location. When both `provider_corporation_name` and `all_provider_corporations` are present, the value here is also included in `all_provider_corporations`. Only present when the corporation is known.
+            example: NYU Langone Health
+          all_provider_corporations:
+            type: array
+            items:
+              type: string
+            description: All provider corporations (e.g. health systems) the professional is affiliated with at this location. When `provider_corporation_name` is also present, it is the primary entry in this list. Only present when at least one affiliation is known.
+            example:
+            - NYU Langone Health
+            - Mount Sinai Health System
+        required:
+        - accepts_new_patients
+        additionalProperties: false
+      additionalProperties: false
+    WorkingHours:
+      description: The days and times of day the provider's office is open
+      type: object
+      properties:
+        day:
+          $ref: '#/components/schemas/DayOfWeek'
+        open:
+          type: number
+          description: The time of day the office opens. Represented as minutes after midnight
+        close:
+          type: number
+          description: The time of day the office closes. Represented as minutes after midnight
+    DayOfWeek:
+      type: number
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      description: ISO day of week (e.g. 1 is Monday)
+    ServiceError:
+      type: object
+      properties:
+        requestId:
+          type: number
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      additionalProperties: false
+    ProfessionalSpecialtyLocation:
+      type: object
+      properties:
+        location_id:
+          type: string
+          description: Unique identifier for an office location. Can be used to obtain address information from the top level `locations` map
+        networks:
+          type: array
+          description: List of networks included on the request. Each network will show both in-network and top-provider status
+          items:
+            $ref: '#/components/schemas/ProfessionalNetwork'
+      additionalProperties: false
+      required:
+      - location_id
+      - networks
+    ProfessionalNetwork:
+      allOf:
+      - $ref: '#/components/schemas/FacilityNetwork'
+      - type: object
+        properties:
+          is_top_provider:
+            type: boolean
+            description: Whether the provider is a top provider for the given specialty at the given location within the given network, taking into account cost and quality.
+        required:
+        - is_top_provider
+        additionalProperties: false
+    Metric:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Metric descriptor
+          example: accurately_diagnoses_gi_issues
+        name:
+          type: string
+          description: Metric category
+          example: Accurate Diagnosis
+        value:
+          type: string
+          enum:
+          - good
+          - very_good
+          - excellent
+          description: Performance on the metric.
+          example: very_good
+      required:
+      - id
+      - name
+      - value
+      additionalProperties: false
     LocationBase:
       type: object
       properties:
@@ -115,66 +244,20 @@ components:
       additionalProperties: false
       required:
       - locations
-    ProfessionalNetwork:
-      allOf:
-      - $ref: '#/components/schemas/FacilityNetwork'
-      - type: object
-        properties:
-          is_top_provider:
-            type: boolean
-            description: Whether the provider is a top provider for the given specialty at the given location within the given network, taking into account cost and quality.
-        required:
-        - is_top_provider
-        additionalProperties: false
-    FacilityNetwork:
+    Position:
+      description: Global coordinates
       type: object
       properties:
-        network_id:
-          type: string
-          description: Unique identifier for the network
-        is_in_network:
-          type: boolean
-          description: Whether the provider is in network for the given specialty at the given location
+        lat:
+          type: number
+          description: Latitude
+        lng:
+          type: number
+          description: Longitude
       required:
-      - network_id
-      - is_in_network
+      - lat
+      - lng
       additionalProperties: false
-    ServiceError:
-      type: object
-      properties:
-        requestId:
-          type: number
-        message:
-          type: string
-        data:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      additionalProperties: false
-    WorkingHours:
-      description: The days and times of day the provider's office is open
-      type: object
-      properties:
-        day:
-          $ref: '#/components/schemas/DayOfWeek'
-        open:
-          type: number
-          description: The time of day the office opens. Represented as minutes after midnight
-        close:
-          type: number
-          description: The time of day the office closes. Represented as minutes after midnight
-    DayOfWeek:
-      type: number
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      description: ISO day of week (e.g. 1 is Monday)
     Professional:
       type: object
       properties:
@@ -359,96 +442,6 @@ components:
             - Mount Sinai Health System
             accepts_new_patients: false
             availability_within_weeks: null
-    Position:
-      description: Global coordinates
-      type: object
-      properties:
-        lat:
-          type: number
-          description: Latitude
-        lng:
-          type: number
-          description: Longitude
-      required:
-      - lat
-      - lng
-      additionalProperties: false
-    ProfessionalSpecialtyLocation:
-      type: object
-      properties:
-        location_id:
-          type: string
-          description: Unique identifier for an office location. Can be used to obtain address information from the top level `locations` map
-        networks:
-          type: array
-          description: List of networks included on the request. Each network will show both in-network and top-provider status
-          items:
-            $ref: '#/components/schemas/ProfessionalNetwork'
-      additionalProperties: false
-      required:
-      - location_id
-      - networks
-    ProfessionalLocation:
-      allOf:
-      - $ref: '#/components/schemas/LocationBase'
-      - type: object
-        properties:
-          name:
-            description: Name of the office or facility for the associated location and provider
-            type: string
-          accepts_new_patients:
-            description: Whether the provider is accepting new patients at the location
-            type: boolean
-          availability_within_weeks:
-            description: The number of weeks out a provider is scheduling new patients, if known
-            type: integer
-          provider_corporation_name:
-            type: string
-            description: The primary provider corporation (e.g. health system) affiliated with this location. When both `provider_corporation_name` and `all_provider_corporations` are present, the value here is also included in `all_provider_corporations`. Only present when the corporation is known.
-            example: NYU Langone Health
-          all_provider_corporations:
-            type: array
-            items:
-              type: string
-            description: All provider corporations (e.g. health systems) the professional is affiliated with at this location. When `provider_corporation_name` is also present, it is the primary entry in this list. Only present when at least one affiliation is known.
-            example:
-            - NYU Langone Health
-            - Mount Sinai Health System
-        required:
-        - accepts_new_patients
-        additionalProperties: false
-      additionalProperties: false
-    Metric:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Metric descriptor
-          example: accurately_diagnoses_gi_issues
-        name:
-          type: string
-          description: Metric category
-          example: Accurate Diagnosis
-        value:
-          type: string
-          enum:
-          - good
-          - very_good
-          - excellent
-          description: Performance on the metric.
-          example: very_good
-      required:
-      - id
-      - name
-      - value
-      additionalProperties: false
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ServiceError'
   parameters:
     acceptVersion:
       name: Accept-Version
@@ -459,6 +452,13 @@ components:
         enum:
         - 1
       description: The API major version.
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceError'
   securitySchemes:
     ApiToken:
       type: http

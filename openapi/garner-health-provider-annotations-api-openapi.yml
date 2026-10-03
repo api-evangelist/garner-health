@@ -62,17 +62,6 @@ components:
       required:
       - message
       additionalProperties: false
-    CreateAnnotation.ResponseBody:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Number of annotations created
-          example: 1
-      required:
-      - count
-      additionalProperties: false
-      description: Returns number of annotations created
     Annotation:
       type: object
       properties:
@@ -105,24 +94,17 @@ components:
       - value
       - isCorrect
       additionalProperties: false
-    CreateAnnotation.RequestBody:
-      $ref: '#/components/schemas/CreateAnnotationParams'
-    AnnotationField:
-      type: string
-      enum:
-      - specialty
-      - phoneNumber
-      - firstName
-      - lastName
-      - locationName
-      - gender
-      - credentials
-      - faxNumber
-      - street1
-      - street2
-      - city
-      - state
-      - zipCode
+    CreateAnnotation.ResponseBody:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Number of annotations created
+          example: 1
+      required:
+      - count
+      additionalProperties: false
+      description: Returns number of annotations created
     CreateAnnotationParams:
       type: object
       properties:
@@ -144,6 +126,24 @@ components:
       - locationId
       - annotations
       additionalProperties: false
+    CreateAnnotation.RequestBody:
+      $ref: '#/components/schemas/CreateAnnotationParams'
+    AnnotationField:
+      type: string
+      enum:
+      - specialty
+      - phoneNumber
+      - firstName
+      - lastName
+      - locationName
+      - gender
+      - credentials
+      - faxNumber
+      - street1
+      - street2
+      - city
+      - state
+      - zipCode
   parameters:
     acceptVersion:
       name: Accept-Version
