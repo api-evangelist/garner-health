@@ -81,6 +81,46 @@ components:
       - value
       - isCorrect
       additionalProperties: false
+    CreateAnnotation.ResponseBody:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Number of annotations created
+          example: 1
+      required:
+      - count
+      additionalProperties: false
+      description: Returns number of annotations created
+    AnnotationField:
+      type: string
+      enum:
+      - specialty
+      - phoneNumber
+      - firstName
+      - lastName
+      - locationName
+      - gender
+      - credentials
+      - faxNumber
+      - street1
+      - street2
+      - city
+      - state
+      - zipCode
+    ServiceError:
+      type: object
+      properties:
+        requestId:
+          type: number
+        message:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      additionalProperties: false
     CreateAnnotationParams:
       type: object
       properties:
@@ -101,46 +141,6 @@ components:
       required:
       - locationId
       - annotations
-      additionalProperties: false
-    AnnotationField:
-      type: string
-      enum:
-      - specialty
-      - phoneNumber
-      - firstName
-      - lastName
-      - locationName
-      - gender
-      - credentials
-      - faxNumber
-      - street1
-      - street2
-      - city
-      - state
-      - zipCode
-    CreateAnnotation.ResponseBody:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Number of annotations created
-          example: 1
-      required:
-      - count
-      additionalProperties: false
-      description: Returns number of annotations created
-    ServiceError:
-      type: object
-      properties:
-        requestId:
-          type: number
-        message:
-          type: string
-        data:
-          type: object
-          additionalProperties: true
-      required:
-      - message
       additionalProperties: false
     CreateAnnotation.RequestBody:
       $ref: '#/components/schemas/CreateAnnotationParams'
