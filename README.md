@@ -64,6 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Garner Health is a company surfaced as a portfolio company of kleiner-perkins and added to the API Evangelist network as a stub for enrichment. Sector: healthcare. This profile is a lead awaiting the enrichment pipeline.
+Garner Health is a healthcare technology company that helps members find high-quality, in-network doctors and helps employers, benefits advisors, health plans, and providers improve care quality while lowering healthcare costs. Garner analyzes more than 60 billion de-identified medical records from 320M+ patients and scores providers on 550+ specialty-specific quality and efficiency metrics across 80+ specialties to identify Top Providers. Its provider-recommendation API returns rank-ordered providers, professional and facility detail, and a provider-annotation endpoint over the base host api.getgarner.com, authenticated with OAuth 2.0 client credentials. Garner is SOC 2 Type II certified.
 
-Source: portfolio company of [kleiner-perkins](https://github.com/api-evangelist/kleiner-perkins) — https://www.getgarner.com
+**Areas:** Company · Healthcare · Health Data · Provider Directory · Care Navigation · Claims Analytics · Health Plans · Employee Benefits
+
+## Garner Health on APIs.io
+
+Everything profiled for Garner Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/garner-health/](https://apis.io/providers/garner-health/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Garner Health Facilities API](https://apis.io/apis/garner-health/garner-health-facilities-api/) — The Facilities API from Garner Health — 1 operation(s) for facilities.
+- [Garner Health Professionals API](https://apis.io/apis/garner-health/garner-health-professionals-api/) — The Professionals API from Garner Health — 1 operation(s) for professionals.
+- [Garner Health Provider Annotations API](https://apis.io/apis/garner-health/garner-health-provider-annotations-api/) — The Provider Annotations API from Garner Health — 1 operation(s) for provider annotations.
+- [Garner Health Providers API](https://apis.io/apis/garner-health/garner-health-providers-api/) — The Providers API from Garner Health — 1 operation(s) for providers.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [garner-health](https://apis.io/servers/garner-health/garner-health/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Garner Health Agentic Access](https://apis.io/agentic-access/garner-health/garner-health-agentic-access/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Garner Health Facilities API](https://apis.io/collections/garner-health/open-garner-health-facilities-api/)
+- [Garner Health Facilities Professionals API](https://apis.io/collections/garner-health/open-garner-health-professionals-api/)
+- [Garner Health Facilities Provider Annotations API](https://apis.io/collections/garner-health/open-garner-health-provider-annotations-api/)
+- [Garner Health Facilities Providers API](https://apis.io/collections/garner-health/open-garner-health-providers-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Garner Health Openapi Overlay](https://apis.io/overlays/garner-health/garner-health-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Garner Health Authentication](https://apis.io/security/garner-health/garner-health-authentication/)
+- [Garner Health Domain Security](https://apis.io/security/garner-health/garner-health-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://garnerhealth.com)
+- [Documentation](https://garnerhealth.redoc.ly)
+- [Getting started](https://garnerhealth.redoc.ly/#section/Authentication:)
+- [API reference](https://garnerhealth.redoc.ly)
+- [Pricing](https://garnerhealth.com/pricing)
+- [Sign up](https://garnerhealth.com/request-demo)
+- [Blog](https://garnerhealth.com/blog)
+- [Compliance](https://garnerhealth.com/news/garner-completes-soc-2-type-ii-certification)
+- [Terms of service](https://garnerhealth.com/terms-of-service)
+- [Privacy policy](https://garnerhealth.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 43.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 48.2 |
+| Access clarity | 52.6 |
+
+**Agent readiness 22.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 27.3** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/garner-health/](https://apis.io/providers/garner-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Garner Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/garner-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
